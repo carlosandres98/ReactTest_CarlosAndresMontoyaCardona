@@ -1,15 +1,23 @@
 import React, { Component } from 'react';
 import './movie.detail.component.scss';
+import { Link } from 'react-router-dom';
 
 export default class MovieDetail extends Component {
 
+    handleClick () {
+        // const history = useHistory;
+        // history.push("/add-movie");
+    }
+    
     render () {
         return (
             <div class="detailContainer">
                 <div class="row">
                     <div class="col-12">
                         <div class="addButtonContainer">
-                        <button type="button" class="btn btn-primary">Add new movie</button>
+                            <Link to="/add-movie">
+                                <button type="button" class="btn btn-primary" to="/add-movie">Add new movie</button>
+                            </Link>
                         </div>
                     </div>
                 </div>

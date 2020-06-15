@@ -6,5 +6,4 @@ export default class MovieModel {
         this.description = description;
         this.image = image;
     }
-
 }

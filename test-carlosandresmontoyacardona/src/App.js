@@ -1,18 +1,18 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+// import logo from './logo.svg';
 import './App.scss';
 import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Redirect,
-  Link
+  Redirect
 } from 'react-router-dom';
 
 import { Navbar } from './components/navbar/navbar.component'
 import { Home } from './pages/home/home.page'
 import { TopFive } from './pages/top-five/top-five.page';
-import { AddNewMovie } from './pages/new-movie/new-movie.page';
+// import { AddNewMovie } from './pages/new-movie/new-movie.page';
+import Application from './pages/test/app';
 
 class App extends Component {
   render() {
@@ -26,7 +26,7 @@ class App extends Component {
               }
             </Route>
             <Route path="/add-movie">
-              {<AddNewMovie />}
+              {<Application />}
             </Route>
             <Route path="/top">
               {

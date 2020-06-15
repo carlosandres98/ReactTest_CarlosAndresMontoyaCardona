@@ -1,22 +1,27 @@
 import React, { Component } from 'react';
+import MovieItem from '../movie-item/movie-item.component';
 
-export default class ExistingMoviesList extends Component {
-    render () {
-        return (
-            <div class="list-group">
-                <a href="/" class="list-group-item list-group-item-action">
-                    <div class="d-flex w-100 justify-content-between">
-                    <h5 class="mb-1">List group item heading</h5>
-                    </div>
-                    <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-                </a>
-                <a href="/" class="list-group-item list-group-item-action">
-                    <div class="d-flex w-100 justify-content-between">
-                    <h5 class="mb-1">List group item heading</h5>
-                    </div>
-                    <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-                </a>
+
+const ExistingMovieList = ({ movies }) => {    
+    return (
+    <div class="generalContainer">
+        {movies.map((movie) => (
+            <div class="card mb-3 card-body" id="selectCard">
+            <div class="row no-gutters">
+              <div class="col-md-4">
+                <h5 class="card-title">{movie.title}</h5>
+              </div>
             </div>
-        );
-    }
-}
+            <div class="row no-gutters">
+              <div class="col-md-4">
+                <h5 class="card-title">{movie.release}</h5>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    )
+  };
+
+  
+export default ExistingMovieList
