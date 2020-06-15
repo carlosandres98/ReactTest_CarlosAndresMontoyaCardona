@@ -15,6 +15,12 @@ function rootReducer(state = initialState, action) {
       articles: state.articles.concat(action.payload)
     });
   }
+  if (action.type === 'DESTROY_SESSION') {
+    state = undefined;
+  }
+  if (action.type === 'USER_LOGOUT') {
+    state = undefined
+  }
   return state;
 }
 

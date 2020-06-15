@@ -9,10 +9,16 @@ import {
 } from 'react-router-dom';
 
 import { Navbar } from './components/navbar/navbar.component'
-import { Home } from './pages/home/home.page'
+import Home from './pages/home/home.page'
 import { TopFive } from './pages/top-five/top-five.page';
-// import { AddNewMovie } from './pages/new-movie/new-movie.page';
-import Application from './pages/test/app';
+import AddMovie from './pages/new-movie/new-movie.page';
+
+export const onLogout = () => {
+  return dispatch => {
+     // Your code here...
+     dispatch({ type: 'DESTROY_SESSION' });
+  };
+}
 
 class App extends Component {
   render() {
@@ -26,7 +32,7 @@ class App extends Component {
               }
             </Route>
             <Route path="/add-movie">
-              {<Application />}
+               { <AddMovie />}
             </Route>
             <Route path="/top">
               {
