@@ -5,7 +5,7 @@ import { addMovie } from "../../redux/actions/index";
 import MovieModel from '../../models/movie.model';
 function mapDispatchToProps(dispatch) {
   return {
-    addMovie: article => dispatch(addMovie(article))
+    addMovie: movie => dispatch(addMovie(movie))
   };
 }
 

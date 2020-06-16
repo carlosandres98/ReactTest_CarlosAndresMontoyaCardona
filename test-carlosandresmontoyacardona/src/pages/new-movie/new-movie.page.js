@@ -7,11 +7,11 @@ import './new-movie.page.scss';
 
 function mapDispatchToProps(dispatch) {
   return {
-    addMovie: article => dispatch(addMovie(article))
+    addMovie: movie => dispatch(addMovie(movie))
   };
 }
 
-class ConnectedForm extends Component {
+class AddNewMovie extends Component {
 
     constructor(props) {
         super(props);
@@ -19,12 +19,15 @@ class ConnectedForm extends Component {
             base64: "",
             redirect: null
         };
+
+        console.log('PROPS NEW: ' + JSON.stringify(props));
+
         this.handleChange = this.handleChange.bind(this); 
         this.handleSubmit = this.handleSubmit.bind(this);
-        this.convertImage = this.convertImage.bind(this);
+        this.convertImageToBase64 = this.convertImageToBase64.bind(this);
     }
 
-    convertImage(event) {
+    convertImageToBase64(event) {
         let files = event.target.files;
         let reader = new FileReader();
         reader.readAsDataURL(files[0]);
@@ -43,11 +46,7 @@ class ConnectedForm extends Component {
     handleSubmit(event) {
         event.preventDefault();
 
-        const movie = new MovieModel();
-        movie.title = this.state.title;
-        movie.release = this.state.release;
-        movie.description = this.state.description;
-        movie.image = this.state.selectedFile;
+        const movie = new MovieModel(this.state.title, this.state.release, this.state.description, this.state.selectedFile);
         this.props.addMovie(movie);
         this.setState(movie);
         this.setState({
@@ -110,7 +109,7 @@ class ConnectedForm extends Component {
                                             class="form-control" 
                                             id="image"
                                             value={image}
-                                            onChange={this.convertImage} required="required"
+                                            onChange={this.convertImageToBase64} required="required"
                                             accept="image/png, image/jpg"/>
                                     </div>
                                 </div>
@@ -138,6 +137,6 @@ class ConnectedForm extends Component {
 const AddMovie = connect(
   null,
   mapDispatchToProps
-)(ConnectedForm);
+)(AddNewMovie);
 
 export default AddMovie;

@@ -9,7 +9,7 @@ const Application = () => (
       <List />
     </div>
     <div>
-      <h2>Add a new article</h2>
+      <h2>Add a new movie</h2>
       <Form />
     </div>
   </>
