@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import TopList from '../../components/top-list/top-list';
-import List from "../test/list";
 export class TopFive extends Component {
 
     state = {
@@ -19,9 +18,8 @@ export class TopFive extends Component {
     render() {
         return (
             <div>
-            <TopList movies={ this.state.movies } />
-            <List />
+                <TopList movies={ this.state.movies } />
             </div>
         );
-    }
+    }x1
 }

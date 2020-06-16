@@ -2,12 +2,12 @@ import React from "react";
 import { connect } from "react-redux";
 
 const mapStateToProps = state => {
-  return { articles: state.articles };
+  return { movies: state.movies };
 };
 
-const ConnectedList = ({ articles }) => (
+const ConnectedList = ({ movies }) => (
   <ul>
-    {articles.map(el => (
+    {movies.map(el => (
       <li key={el.id}>{el.title} -------- {el.release} -------- {el.description} -------- {el.image}</li>
     ))}
   </ul>

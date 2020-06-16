@@ -1,12 +1,11 @@
 // src/js/components/Form.jsx
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { addArticle } from "../../redux/actions/index";
+import { addMovie } from "../../redux/actions/index";
 import MovieModel from '../../models/movie.model';
-
 function mapDispatchToProps(dispatch) {
   return {
-    addArticle: article => dispatch(addArticle(article))
+    addMovie: article => dispatch(addMovie(article))
   };
 }
 
@@ -35,7 +34,7 @@ class ConnectedForm extends Component {
 
     alert( JSON.stringify(movie));
     
-    this.props.addArticle(movie);
+    this.props.addMovie(movie);
     this.setState(movie);
   }
   render() {

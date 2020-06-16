@@ -1,7 +1,6 @@
 
 const initialState = {
-    movies: [],
-    articles: []
+    movies: []
 };
 
 function rootReducer(state = initialState, action) {
@@ -10,11 +9,15 @@ function rootReducer(state = initialState, action) {
       movies: state.movies.concat(action.payload)
     });
   }
-  if (action.type === 'ADD_ARTICLE') {
-    return Object.assign({}, state, {
-      articles: state.articles.concat(action.payload)
-    });
-  }
+  // if (action.type === 'ADD_MOVIE') {
+  //   return Object.assign({}, state, {
+  //     movies: state.movies.concat(action.payload)
+  //   });
+  // }
+  if(action.type === 'REMOVE_ITEM') {
+    state.movies.splice(action.payload, 1)
+    return { ...state, movies: [ ...state.movies ] }
+}
   if (action.type === 'DESTROY_SESSION') {
     state = undefined;
   }

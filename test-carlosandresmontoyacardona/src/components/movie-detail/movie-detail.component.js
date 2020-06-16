@@ -4,10 +4,6 @@ import { Link } from 'react-router-dom';
 
 export default class MovieDetail extends Component {
 
-    handleClick () {
-        // const history = useHistory;
-        // history.push("/add-movie");
-    }
     
     render () {
         return (
