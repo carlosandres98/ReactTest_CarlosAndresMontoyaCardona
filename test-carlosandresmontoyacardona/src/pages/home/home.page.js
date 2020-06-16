@@ -2,34 +2,32 @@ import React, { Component } from 'react';
 import './home.scss';
 import ExistingMoviesList from '../../components/existing-movies-list/existing-movies-list.component';
 import MovieDetail from '../../components/movie-detail/movie-detail.component';
-
 import { connect } from "react-redux";
 
 const mapStateToProps = state => {
-  return { movies: state.movies };
+    return { 
+        movies: state.movies, 
+        selectItem: state.selectItem
+    };
 };
 
-const ConnectedList = ({ movies }) => (
-    <div class="generalContainer">
-        <div class="row">
-            <div class="col-4">
-            <ExistingMoviesList movies={movies}/>
+class HomeComponent extends Component {
+    render() {
+        return (
+            <div className="generalContainer">
+                <div className="row">
+                    <div className="col-4">
+                        <ExistingMoviesList movies={this.props.movies} />
+                    </div>
+                    <div className="col-8">
+                        <MovieDetail selectItem={this.props.selectItem} />
+                    </div>
+                </div>
             </div>
-            <div class="col-8">
-            <MovieDetail />
-            </div>
-        </div>
-    </div>
-);
+        );
+    }
+}
 
-const Home = connect(mapStateToProps)(ConnectedList);
+const Home = connect(mapStateToProps)(HomeComponent);
 
 export default Home;
-
-
-
-//   <ul>
-//     {movies.map(el => (
-//       <li key={el.id}>{el.title} -------- {el.release} -------- {el.description} -------- {el.image}</li>
-//     ))}
-//   </ul>

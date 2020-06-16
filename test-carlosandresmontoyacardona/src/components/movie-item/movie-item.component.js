@@ -1,38 +1,59 @@
 import React, { Component } from 'react';
 import './movie-item.component.scss';
 import $ from 'jquery';
-import { removeMovie } from "../../redux/actions/index";
+import { removeMovie, selectMovie, removeItemSelected } from "../../redux/actions/index";
 import { connect } from "react-redux";
 
 
 function mapDispatchToProps(dispatch) {
     return {
-        removeMovie: movie => dispatch(removeMovie(movie))
+        removeItemSelected: movie => dispatch(removeItemSelected(movie)),
+        removeMovie: movie => dispatch(removeMovie(movie)),
+        selectMovie: movie => dispatch(selectMovie(movie))
+        
     };
 }
 
-const MoviesItem = ({ movie }) => {
-    return (
-        <div>
-            {movie.map((mv) => (
-                <div class="card card-body itemCard" type="button" variant="outlined" id={mv.title} onClick={selectCard.bind(this)}>
-                    <div class="row">
-                        <div class="col-12">
-                            <h5 class="card-title">{mv.title}</h5>
+class MovieItemComponent extends Component {
+    constructor (props) {
+        super(props);
+        this.deleteMovie = this.deleteMovie.bind(this);
+        this.selectCard = this.selectCard.bind(this);
+    }
+
+    selectCard(mv) {
+        $('div').on('click', '.itemCard', function () {
+            $(this).addClass('activeCard').siblings().removeClass('activeCard')
+            $('.removeIcon').addClass('noShow')
+            $(this).find('.removeIcon').removeClass('noShow').siblings().addClass('noShow');
+        });
+        this.props.selectMovie(mv);
+    }
+
+    deleteMovie (mv) {
+        this.props.removeItemSelected(mv);
+        this.props.removeMovie(mv);
+    }    
+
+    render() {
+        return (
+            <div>
+            {this.props.movie.map((mv) => (
+                <div className="card card-body itemCard" type="button" variant="outlined" id={mv.title} onClick={this.selectCard.bind(this, mv)}>
+                    <div className="row">
+                        <div className="col-12">
+                            <h5 className="card-title">{mv.title}</h5>
                         </div>
                     </div>
-                    <div class="row no-gutters">
-                        <div class="col-12">
-                            <p class="card-title">Release Date: {mv.release}</p>
+                    <div className="row no-gutters">
+                        <div className="col-12">
+                            <p className="card-title">Release Date: {mv.release}</p>
                         </div>
                     </div>
-                    <div class="removeIcon noShow">
-                        <button class="btn" onClick={() => {
-                            alert(JSON.stringify(mv));
-                            removeMovie(mv);
-                        }}>
+                    <div className="removeIcon noShow">
+                        <button className="btn" onClick={this.deleteMovie.bind(this, mv)}>
                             <svg
-                                class="bi bi-trash-fill coloicon"
+                                className="bi bi-trash-fill coloicon"
                                 width="1em"
                                 height="1em"
                                 viewBox="0 0 16 16"
@@ -45,21 +66,14 @@ const MoviesItem = ({ movie }) => {
                 </div>
             ))}
         </div>
-    )
-};
-
-function selectCard() {
-    $('div').on('click', '.itemCard', function () {
-        $(this).addClass('activeCard').siblings().removeClass('activeCard')
-        $('.removeIcon').addClass('noShow')
-        $(this).find('.removeIcon').removeClass('noShow').siblings().addClass('noShow');
-    });
+        );
+    }
 }
 
 const MovieItem = connect(
     null,
     mapDispatchToProps
-)(MoviesItem);
+)(MovieItemComponent);
 
 export default MovieItem;
 

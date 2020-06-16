@@ -13,13 +13,6 @@ import Home from './pages/home/home.page'
 import { TopFive } from './pages/top-five/top-five.page';
 import AddMovie from './pages/new-movie/new-movie.page';
 
-export const onLogout = () => {
-  return dispatch => {
-     // Your code here...
-     dispatch({ type: 'DESTROY_SESSION' });
-  };
-}
-
 class App extends Component {
   render() {
     return (

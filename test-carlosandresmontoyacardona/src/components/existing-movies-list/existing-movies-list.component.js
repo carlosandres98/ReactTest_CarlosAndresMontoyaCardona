@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
 import MovieItem from '../movie-item/movie-item.component';
-  
-const ExistingMovieItem = ({ movies }) => {    
+
+class ExistingMoviesList extends Component {
+  render() {
     return (
-    <div class="generalContainer">
-            <MovieItem movie={movies}/>
+      <div className="generalContainer">
+        <MovieItem movie={this.props.movies} />
       </div>
-    )
-};
- 
-export default ExistingMovieItem
+    );
+  }
+}
+
+export default ExistingMoviesList
