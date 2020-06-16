@@ -1,11 +1,17 @@
 import React, { Component } from 'react';
 import './movie-item.component.scss';
 import $ from 'jquery';
-import { connect } from "react-redux";
 import { removeMovie } from "../../redux/actions/index";
+import { connect } from "react-redux";
 
-const MovieItemElement = ({ movie }) => {
-    const movieItem = new MovieItem();
+
+function mapDispatchToProps(dispatch) {
+    return {
+        removeMovie: movie => dispatch(removeMovie(movie))
+    };
+}
+
+const MoviesItem = ({ movie }) => {
     return (
         <div>
             {movie.map((mv) => (
@@ -21,7 +27,10 @@ const MovieItemElement = ({ movie }) => {
                         </div>
                     </div>
                     <div class="removeIcon noShow">
-                        <button class="btn" onClick={movieItem.deleteMovie(mv)}>
+                        <button class="btn" onClick={() => {
+                            alert(JSON.stringify(mv));
+                            removeMovie(mv);
+                        }}>
                             <svg
                                 class="bi bi-trash-fill coloicon"
                                 width="1em"
@@ -47,37 +56,11 @@ function selectCard() {
     });
 }
 
-function mapDispatchToProps(dispatch) {
-    return {
-        removeMovie: movie => dispatch(removeMovie(movie))
-    };
-}
-
-class MovieItem extends Component {
-
-    constructor (props) {
-        super(props);
-        this.state = {
-            title: ""
-        };
-        console.log('PROPS CONST: ' + JSON.stringify(props));
-        
-        // this.deleteMovie = this.deleteMovie.bind(this);
-    }
-
-    deleteMovie(mv) {    
-        console.log("Props ", this.props)
-        this.props.removeMovie();
-    }
-
-    render () {
-        return (<MovieItemElement movie= {this.props.movie}/>);
-    }
-}
-
-const RemoveMovie = connect(
+const MovieItem = connect(
     null,
     mapDispatchToProps
-  )(MovieItem);
+)(MoviesItem);
 
-export default RemoveMovie;
+export default MovieItem;
+
+// export default MovieItem;

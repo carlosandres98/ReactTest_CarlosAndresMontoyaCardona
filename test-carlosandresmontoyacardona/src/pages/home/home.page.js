@@ -20,7 +20,6 @@ const ConnectedList = ({ movies }) => (
             </div>
         </div>
     </div>
-
 );
 
 const Home = connect(mapStateToProps)(ConnectedList);

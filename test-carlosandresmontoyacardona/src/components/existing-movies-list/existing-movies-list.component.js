@@ -8,13 +8,5 @@ const ExistingMovieItem = ({ movies }) => {
       </div>
     )
 };
-
-class ExistingMovieList extends Component {
-    render () {
-        return (
-            <ExistingMovieItem movies={this.props.movies} />
-        );
-    }
-}
  
-export default ExistingMovieList
+export default ExistingMovieItem

@@ -3,6 +3,7 @@ export function addMovie(payload) {
 }
 
 export function removeMovie(payload) {
+    alert('Vamos Actions');
   return { type: 'REMOVE_ITEM', payload };
 }
 

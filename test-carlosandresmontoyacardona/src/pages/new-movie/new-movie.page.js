@@ -1,13 +1,14 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { addMovie } from "../../redux/actions/index";
+import { addMovie, removeMovie } from "../../redux/actions/index";
 import MovieModel from '../../models/movie.model';
 import { Redirect } from "react-router-dom";
 import './new-movie.page.scss';
 
 function mapDispatchToProps(dispatch) {
   return {
-    addMovie: movie => dispatch(addMovie(movie))
+    addMovie: movie => dispatch(addMovie(movie)),
+    removeMovie: movie => dispatch(removeMovie(movie))
   };
 }
 
@@ -48,12 +49,13 @@ class AddNewMovie extends Component {
 
         const movie = new MovieModel(this.state.title, this.state.release, this.state.description, this.state.selectedFile);
         this.props.addMovie(movie);
+        this.props.removeMovie(movie);
         this.setState(movie);
         this.setState({
             redirect: '/home'
         })
     }
-
+    
     render() {
         if (this.state.redirect) {
             return <Redirect to={this.state.redirect} />
